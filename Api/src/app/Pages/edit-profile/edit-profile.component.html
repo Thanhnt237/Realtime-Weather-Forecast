@@ -1,0 +1,93 @@
+
+<mat-card>
+    <mat-card-content>
+      <div class="header" header>
+        <!-- Alert login -->
+        <div class="alert alert-info alert-dismissable" *ngIf="alertError">
+          <a class="panel-close close" data-dismiss="alert">×</a>
+          <i class="fa fa-coffee"></i>
+          {{errCatching}}
+        </div>
+
+        <P>Edit your profile</P>
+      </div>
+      <form (ngSubmit)="onEditProfile()" name="editProfileForm" [formGroup]="editProfileForm">
+        <div>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input
+              formControlName="name"
+              matInput
+              placeholder="Enter Name" required
+            />
+            <mat-error *ngIf="!editProfileForm.controls['name'].valid">
+                Name is required
+              </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="userIdInput">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>User ID</mat-label>
+            <input
+              formControlName="userId"
+              matInput
+              placeholder="Enter User ID" required
+            />
+            <mat-error *ngIf="!editProfileForm.controls['userId'].valid">
+                User ID is required
+              </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="phoneInput">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input
+              formControlName="phone"
+              matInput
+              placeholder="Enter phone" required
+            />
+            <mat-error *ngIf="!editProfileForm.controls['phone'].valid">
+                phone is required
+              </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" required />
+            <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>
+                {{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+        </button>
+        <mat-error *ngIf="!editProfileForm.controls['password'].valid">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input formControlName="confirmPassword" matInput [type]=" hide ? 'password' : 'text'" required />
+            <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>
+                {{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+        </button>
+        <mat-error *ngIf="!editProfileForm.controls['confirmPassword'].valid">
+            Confirm Password is required
+          </mat-error>
+        </mat-form-field>
+        </div>
+
+        <button mat-flat-button color="primary">submit</button>
+        <button mat-stroked-button color="basic" routerLink = "/profile">cancel</button>
+      </form>
+    </mat-card-content>
+  </mat-card>

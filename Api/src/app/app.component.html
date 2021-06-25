@@ -1,0 +1,42 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <button mat-icon-button>
+    <mat-icon (click)="sidenav.open()">menu</mat-icon>
+  </button>
+
+  <span> <mat-icon> cloud </mat-icon> RWF </span>
+
+  <div class="spacer"></div>
+
+  <a mat-button [routerLink]="['/']" > Home </a>
+  <a mat-button [routerLink]="['/profile']" [routerLinkActive]="'active-link'"> Profile </a>
+  <a mat-button [routerLink]="['/login']" [routerLinkActive]="'active-link'" *ngIf="!_authService.loggedIn()"> Login </a>
+  <a mat-button [routerLink]="['/register']" [routerLinkActive]="'active-link'" *ngIf="!_authService.loggedIn()"> Sign Up </a>
+  <a mat-raised-button color="accent" (click)="_authService.logoutUser()" *ngIf="_authService.loggedIn()"> Logout </a>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode = "push" [(opened)]="opened">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/']">
+        <mat-icon mat-list-icon> home </mat-icon> Home
+      </a>
+      <a mat-list-item [routerLink]="['/profile']">
+        <mat-icon mat-list-icon> person </mat-icon> Profile
+      </a>
+      <a mat-list-item *ngIf="!_authService.loggedIn()" [routerLink]="['/login']">
+        <mat-icon mat-list-icon> login </mat-icon> Login
+      </a>
+      <a mat-list-item *ngIf="!_authService.loggedIn()"[routerLink]="['/register']">
+        <mat-icon mat-list-icon> app_registration </mat-icon> Sign Up
+      </a>
+      <a mat-list-item *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">
+        <mat-icon mat-list-icon> logout </mat-icon> Logout
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div id="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

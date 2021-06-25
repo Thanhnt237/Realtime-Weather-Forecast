@@ -1,0 +1,26 @@
+.spacer{
+  flex: 1 1 auto;
+}
+
+.active-link {
+  background: white;
+  color: blue;
+}
+
+.mat-button:hover {
+  background: white;
+  color: blue;
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav, mat-sidenav-content {
+  padding: 26px;
+}
+
+mat-sidenav{
+  backgroud-color: primary;
+  width: 200px;
+}
